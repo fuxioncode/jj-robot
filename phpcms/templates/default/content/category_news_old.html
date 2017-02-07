@@ -1,0 +1,54 @@
+{template "content","header"}
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="1" where="`pcatid`=8"  order="listorder ASC"}
+            {loop $data $v}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="news">
+    <div class="wrapper">
+        <h3 class="title3 mt30">热点新闻</h3>
+        <div class="news-box">
+            <div class="latest">
+                <h4 class="title4">行业动态</h4>
+                {pc:content action="lists" catid="16" num="10" order="inputtime DESC"}
+                <ul class="list lh24 f14">
+                    {loop $data $r}
+                    <li>
+                        <a href="{$r[url]}">{$r[title]}</a>
+                        <span>{date('Y/m/d',$r[inputtime])}</span>
+                    </li>
+                    {/loop}
+                </ul>
+                <p class="latest-more" ><a href="http://www.jj-robot.cn/index.php?m=content&c=index&a=show&catid=16">MORE</a></p>
+                {/pc}
+            </div>
+
+            <div class="news-list">
+                {pc:content action="lists" catid="15" num="10" order="inputtime DESC" page="$page"}
+                <ul class="list lh24 f14">
+                    {loop $data $r}
+                    <li>
+                        <div class="news-item-img"><img src="{$r[thumb]}" alt="{$r[title]}"/></div>
+                        <div class="news-item-desc">
+                            <h4><a href="{$r[url]}">{$r[title]}</a></h4>
+                            <p>{str_cut($r[description],300,'...')}</p>
+                            <span>{date('Y/m/d',$r[inputtime])}</span>
+                        </div>
+                    </li>
+                    {/loop}
+                </ul>
+                <div id="pages" class="text-c">{$pages}</div>
+                {/pc}
+            </div>
+        </div>
+    </div>
+</div>
+<br style="clear:both;"/>
+<script src="{PLUGIN_STATICS_PATH}taikan/js/fixed-footer.js"></script>
+{template "content","footer"}

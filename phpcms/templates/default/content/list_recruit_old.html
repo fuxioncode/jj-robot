@@ -1,0 +1,46 @@
+{template "content","header"}
+<!--main-->
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="1" where="`pcatid`=20"  order="listorder ASC"}
+            {loop $data $v}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="recruit mt20">
+    <div class="wrapper">
+        <div class="recruit-box">
+            {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+            {loop $data $r}
+            <div class="recruit-item">
+                <h2>{$r[title]}</h2>
+                <p class="mt15">
+                    <span>招聘人数: <span class="fb">{$r[recruit_number]}</span></span>
+                    <span class="ml30">专业: <span class="fb">{$r[professional]}</span></span>
+                </p>
+                <div class="clearfix mt20">
+                    <span class="recruit-caption">技能要求:</span>
+                    <div class="recruit-content">
+                        {$r[skills]}
+                    </div>
+                </div>
+                <div class="clearfix mt20">
+                    <span class="recruit-caption">工作内容:</span>
+                    <div class="recruit-content">
+                        {$r[work_content]}
+                    </div>
+                </div>
+            </div>
+            {/loop}
+            <div id="pages" class="text-c">{$pages}</div>
+            {/pc}
+
+        </div>
+    </div>
+</div>
+
+{template "content","footer"}

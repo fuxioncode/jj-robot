@@ -1,0 +1,182 @@
+{template "content","header"}
+<script src="{PLUGIN_STATICS_PATH}taikan/js/index-action.js"></script>
+
+<div class="looppic">
+    <div class="">
+        <div class="looppic-box">
+            <div class="looppic-show">
+                <ul class="looppic-imgs">
+                    {pc:content action="lists" catid="25" num="5"  where="`pcatid`='0'" order="listorder DESC"}
+                    {loop $data $v}
+                    <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+            </div>
+            <a class="looppic-left" href="javascript:void(0);"></a>
+            <a class="looppic-right" href="javascript:void(0);"></a>
+            <ul class="looppic-nav">
+                {pc:content action="lists" catid="25" num="5" }
+                {loop $data $v}
+                <li></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="title1">
+    <img src="{PLUGIN_STATICS_PATH}taikan/images/header_title1.png" alt="产品中心">
+</div>
+<div class="us mt15">
+    <div class="wrapper">
+        <div class="tab_product">
+            <ul class="tab-nav clearfix">
+                {loop subcat(6) $r}
+                {php $num_product++}
+                <li {if $num_product==1} class="current" {/if}><a href="{$r[url]}">{$r[catname]}</a></li>
+                {/loop}
+            </ul>
+            {loop subcat(6) $r}
+            <div class="tab-box">
+                <ul class="item-box1">
+                    {pc:content action="lists" catid="$r[catid]" num="3" order="listorder"}
+                    {loop $data $v}
+                    <li class="">
+                        <a href="{$v[url]}">
+                            <div class="item-img">
+                                <img src="{$v[thumb]}" alt="{$v[title]}"/>
+                                <h3>{$v[title]}</h3>
+                            </div>
+                        </a>
+                    </li>
+                    {/loop}
+                    {/pc}
+                </ul>
+            </div>
+            {/loop}
+        </div>
+    </div>
+</div>
+
+<div class="title1 bk">
+    <img src="{PLUGIN_STATICS_PATH}taikan/images/header_title2.png"   alt="金典案例">
+</div>
+<div class="service mt20">
+    <div class="wrapper">
+        <ul class="ser-box clearfix">
+            {loop subcat(7) $r}
+            {pc:content action="lists" catid="$r[catid]" num="1" order="listorder" }
+            {loop $data $v}
+            <li>
+                <a href="{$v[url]}">
+                    <div class="ico-ser" style="background-image: url({$v[thumb]})">
+                    </div>
+                    <div class="ser-content">
+                        <div class="ser-slide-box">
+                            <div>
+                                <h3>{$v[title]}</h3>
+                                <p>{$v[description]}</p>
+                            </div>
+                            <div>
+                                <h3>{$v[title]}</h3>
+                                <p>{$v[description]}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {/loop}
+            {/pc}
+            {/loop}
+        </ul>
+    </div>
+</div>
+
+<div class="title1">
+    <img src="{PLUGIN_STATICS_PATH}taikan/images/header_title3.png"  alt="关于我们">
+</div>
+<div class="us mt15">
+    <div class="wrapper">
+        <div class="tab">
+            <ul class="tab-nav">
+                {pc:content action="lists" catid="9" num="6" order="listorder" }
+                {loop $data $r}
+                <?php $num++?>
+                <li {if $num==1 }class="current" {/if}><a href="{$r[url]}">{$r[title]}</a></li>
+                {/loop}
+                {/pc}
+            </ul>
+
+            {pc:content action="lists" catid="9" num="6" order="listorder"}
+            {loop $data $r}
+            <div  class="tab-box" >
+                <div class="comInfo-desc">
+                    <a href="{$r[url]}" style="display:block;">
+                        {$r[desc]}
+                    </a>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+        </div>
+    </div>
+</div>
+
+<div class="title1">
+    <img src="{PLUGIN_STATICS_PATH}taikan/images/header_title4.png" >
+</div>
+<div class="index-news">
+    <div class="wrapper pt20 pd50">
+        {pc:content action="lists" catid="15" num="5" order="inputtime DESC" page="$page"}
+        <ul class="list ">
+            {loop $data $r}
+            <li>
+                <div class="news-item-desc" style="margin-left:0px;">
+                    <h4><a href="{$r[url]}">{$r[title]}</a></h4>
+                    <div>
+                        <span style="float:left;">{str_cut($r[description],200,'...')}</span>
+                        <span style="float:right; margin-right: 100px;">{date('Y-m-d',$r[inputtime])}</span>
+                    </div>
+                </div>
+            </li>
+            <div class="bk6"></div>
+            {/loop}
+        </ul>
+        <div id="pages" class="text-c">{$pages}</div>
+        {/pc}
+    </div>
+</div>
+
+<div class="title1">
+    <img src="{PLUGIN_STATICS_PATH}taikan/images/header_title5.png">
+</div>
+<div class="contact">
+    <div class="wrapper  pt20 clearfix pb50">
+        <script language='javascript' src='{APP_PATH}index.php?m=formguide&c=index&a=show&formid=15&action=js&siteid=1'></script>
+
+        <div class="l pct50 contact">
+            <h3 class="pt10">在线洽谈</h3>
+            <p class="mt20">
+                <span class="fb">联系电话:</span>020-2907 2822；020-29073242 <br/>
+                <span class="notice">[周一至周五 09:00-20:00]</span>
+            </p>
+            <p class="mt20">
+                <span class="b"> 联系邮箱:</span> <span class="link"> gzjinjiakj@163.com</span> <br/>
+                <span class="b">招聘邮箱：</span><span class="link">xiangyan@supcon.com</span>
+            </p>
+            <p class="mt20">公司地址：广州市国家数字家庭应用示范产业基地研发园（东区）B121-122</p>
+            <div id="map" class="map">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{template "content","footer"}
+
+
+
+

@@ -1,0 +1,64 @@
+{template "content","header"}
+
+<div class="fix_content">
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="1" where="`pcatid`=9"  order="listorder ASC"}
+            {loop $data $v}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+
+<div class="us mt10">
+    <div class="wrapper_content mt20">
+        <div class="tab-boxstyle2 mt15 block-style1">
+            <div class="timeaxis">
+                <?php $nextYear = date("Y") + 1; ?>
+                <div class="timeaxis-box">
+                    {pc:content action="lists" catid="29" num="10" order="actdate DESC"}
+                    {loop $data $r}
+                    {if $nextYear != date('Y',$r[actdate]) }
+                    <?php $nextYear = date('Y',$r[actdate]); ?>
+                    <div class="timeaxis-year">
+                        <div>
+                            <h3>{date('Y',$r[actdate])}</h3>
+                            <span></span>
+                        </div>
+                    </div>
+                    {/if}
+                    <div class="timeaxis-item clearfix">
+                        <div class="timeaxis-date">
+                            <div class="box">
+                                <p class="date">{date('m.d',$r[actdate])}</p>
+                                <p class="year">{date('Y',$r[actdate])}</p>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="timeaxis-content clearfix">
+                            <a href="{$r[url]}">
+                            <div class="img">
+                                <img src="{$r[thumb]}" alt="{$r[title]}"/>
+                            </div>
+                            <div class="text">
+                                <h4>{$r[title]}</h4>
+                                <p>{$r[desc]}</p>
+                            </div>
+                                </a>
+                        </div>
+                    </div>
+                    {/loop}
+                    {/pc}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+{template "content","footer"}

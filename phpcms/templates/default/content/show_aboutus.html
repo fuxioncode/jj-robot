@@ -1,0 +1,54 @@
+{template "content","header"}
+<div class="fix_content">
+    <div class="banner">
+        <div class="banner-box">
+            <ul>
+                {pc:content action="lists" catid="25"  num="1" where="`pcatid`=9"  order="listorder ASC"}
+                {loop $data $v}
+                <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper ">
+        <div  style="padding: 20px 0px;">
+            <div class="l">
+                <a href="{siteurl($siteid)}">首页</a>
+                <span>/</span>
+                {catpos($catid,' / ')}
+
+                {pc:content action="lists" catid="9" num="6" order="listorder"}
+                {loop $data $v}
+                {if $v[id]==$id }{$v[title]} {/if}
+                {/loop}
+                {/pc}
+            </div>
+            <div class="r">
+                <ul>
+                {pc:content action="lists" catid="9" num="6" order="listorder"}
+                {loop $data $v}
+                    <li style="display:inline-block;">
+                    {if $catid==9&&$v[id]==$id }<a href="{$v[url]}" style="color: #0000ee">{$v[title]}</a>
+                    {else}<a href="{$v[url]}" style="color: #000000">{$v[title]}</a> {/if}
+                    </li>
+                {/loop}
+                {/pc}
+                    <li style="display:inline-block;">
+                        {if $catid==29 }<a href="/index.php?m=content&c=index&a=lists&catid=29" style="color: #0000ee">员工风采</a> {/if}
+                        {if $catid!=29 }<a href="/index.php?m=content&c=index&a=lists&catid=29" style="color: #000000">员工风采</a> {/if}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr style="border-bottom:1px solid #9fa1a0;clear:both;"/>
+
+        <div class="product-content"  style="margin: 20px;">
+            <div class="comInfo p10">
+                {$content}
+            </div>
+        </div>
+    </div>
+</div>
+{template "content","footer"}

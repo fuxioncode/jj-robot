@@ -1,0 +1,38 @@
+{template "content","header"}
+
+<div class="content" style="margin:0px auto;">
+    <div class="wrapper">
+    <div  style="margin: 20px auto;">
+        <div class="product_logo l">
+            <img class="l" src="{$thumb}" alt="{$title}"  style="margin-right: 20px;margin-bottom: 10px;"/>
+            <div  class="l">
+                <h3>·{$title}·</h3>
+            </div>
+        </div>
+        <div class="r">
+            <ul>
+            {pc:content action="lists" catid="$catid" num="6" order="listorder"}
+            {loop $data $v}
+                {if $v[id]!=$id }
+                <li><a href="{$v[url]}" >{$v[title]}</a></li>
+                {/if}
+            {/loop}
+            {/pc}
+            </ul>
+        </div>
+    </div>
+
+    <hr style="border-bottom:1px dashed #000000;clear:both;"/>
+
+    <div class="product-content"  style="margin: 20px;">
+        <h1 style="font-size:26px;margin: 20px;" class="l">{$title}</h1>
+        <div class="l" style="width:70%;">
+            {$content}
+        </div>
+    </div>
+    </div>
+</div>
+<br style=" clear:both;"/>
+<script src="{PLUGIN_STATICS_PATH}taikan/js/fixed-footer.js"></script>
+
+{template "content","footer"}

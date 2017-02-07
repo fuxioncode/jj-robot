@@ -1,0 +1,51 @@
+{template "content","header"}
+
+<div class="newsdetail">
+    <div class="wrapper">
+        <div class="newsdetail-box clearfix">
+            <div class="newsdetail-art"  style="width: 100%">
+                <div class="newscrom nav_second">
+                    <a href="{siteurl($siteid)}">首页/</a>
+                    {catpos($catid,'/ ')}
+                    <a href="javascript:void(0);">正文</a>
+                </div>
+                <div class="news-box newsdetail-content" style="width: 90%; margin: auto;" >
+                    <h2 class="news_title">{$title}</h2>
+                    <p  class="news_time"><span class="news-time">{$inputtime}</span></p>
+                    <p class="news-desc" >
+                        {$content}
+                    </p>
+                </div>
+                <div style="border-bottom: 1px solid #d9d9d9;"></div>
+                <div class="mt30 newsdetail-artctr">
+                    <p>上一篇:<a class="prev-art" href="{$previous_page[url]}">{$previous_page[title]}</a></p>
+
+                    <p>下一篇:<a class="next-art" href="{$next_page[url]}">{$next_page[title]}</a></p>
+                </div>
+            </div>
+<!--
+            <div class="news-latest">
+                <div class="newscrom">
+                    <span class="nav_second ml20">{catname($catid)}</span>
+                </div>
+                <ul class="news-lastest-list">
+                    {pc:content action="lists" catid="15" num="6" order="inputtime DESC"}
+                    {loop $data $r}
+                    <li>
+                        <img src="{$r[thumb]}" alt="{$r[title]}"/>
+                        <a href="{$r[url]}">{$r[title]}</a>
+                    </li>
+                    {/loop}
+                    {/pc}
+                </ul>
+                <div class="tr">
+                    <a class="news-lastlist-more" href="/index.php?m=content&c=index&a=lists&catid=8">更多动态</a>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+{template "content","footer"}

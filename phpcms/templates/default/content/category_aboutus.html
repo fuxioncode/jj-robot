@@ -1,0 +1,92 @@
+{template "content","header"}
+
+<div class="fix_content">
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="1" where="`pcatid`=9"  order="listorder ASC"}
+            {loop $data $v}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+
+<div class="us mt10">
+    <div class="wrapper_content mt20">
+        <div class="tab" id="js-about">
+            <ul class="clearfix tab-navstyle2">
+                {pc:content action="lists" catid="$catid" num="4" order="listorder" }
+                {loop $data $r}
+                <?php $num++?>
+                {if $num==1 }<li class="current pct20">{/if}
+                {if $num!=1 }<li class="pct20">{/if}
+                    <a href="{$r[url]}">{$r[title]}</a>
+                </li>
+                {/loop}
+                {/pc}
+                <li class="pct20">
+                    <a href="/index.php?m=content&c=index&a=lists&catid=29">员工风采</a>
+                </li>
+            </ul>
+
+            {pc:content action="lists" catid="$catid" num="4" order="listorder"}
+            {loop $data $r}
+            <?php $num_content++?>
+            {if $num1==1 }<div class="tab-boxstyle2 current mt50 mb50 block-style1"> {/if}
+            {if $num1!=1 }<div class="tab-boxstyle2 mt50 mb50 block-style1"> {/if}
+                <div class="comInfo p10">
+                    {$r[desc]}
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+            <div class="tab-boxstyle2 mt15 block-style1">
+                <div class="timeaxis">
+                    <?php $nextYear = date("Y") + 1; ?>
+                    <div class="timeaxis-box">
+                        {pc:content action="lists" catid="29" num="10" order="actdate DESC"}
+                        {loop $data $r}
+                            {if $nextYear != date('Y',$r[actdate]) }
+                            <?php $nextYear = date('Y',$r[actdate]); ?>
+                            <div class="timeaxis-year">
+                                <div>
+                                    <h3>{date('Y',$r[actdate])}</h3>
+                                    <span></span>
+                                </div>
+                            </div>
+                            {/if}
+                            <div class="timeaxis-item clearfix">
+                                <div class="timeaxis-date">
+                                    <div class="box">
+                                        <p class="date">{date('m.d',$r[actdate])}</p>
+                                        <p class="year">{date('Y',$r[actdate])}</p>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="timeaxis-content clearfix">
+                                    <a href="{$r[url]}">
+                                    <div class="img">
+                                        <img src="{$r[thumb]}" alt="{$r[title]}"/>
+                                    </div>
+                                    <div class="text">
+                                        <h4>{$r[title]}</h4>
+                                        <p>{$r[desc]}</p>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {/loop}
+                        {/pc}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+{template "content","footer"}

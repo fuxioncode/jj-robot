@@ -1,0 +1,299 @@
+{template "content","header"}
+
+    <div class="looppic">
+        <div class="looppic-box">
+            <div class="looppic-show">
+                <ul class="looppic-imgs clearfix">
+                    {pc:content action="lists" catid="25" num="5"  where="`pcatid`='0'" order="listorder DESC"}
+                    {loop $data $v}
+                    <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+            </div>
+            <a class="looppic-left" href="javascript:void(0);"></a>
+            <a class="looppic-right" href="javascript:void(0);"></a>
+            <ul class="looppic-nav dn">
+                {pc:content action="lists" catid="25" num="5" }
+                {loop $data $v}
+                <li></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+
+    <div class="prod pt30">
+        <div class="wrapper">
+            <div class="title1 clearfix">
+                <h2 class="l">产品中心</h2>
+                <a class="more-detail r" href="/index.php?m=content&c=index&a=lists&catid=6;">更多产品</a>
+            </div>
+            <div class="tab" id="js-prod">
+                <ul class="tab-navstyle1 clearfix" id="ul_product_title">
+                    {loop subcat(6) $r}
+                    {php $num_product++}
+                    {if $num_product==1} <li class="current pct20"> {/if}
+                    {if $num_product!=1} <li class="pct20"> {/if}
+                    <a href="{$r[url]}">{$r[catname]}</a>
+                    </li>
+                    {/loop}
+                </ul>
+                {loop subcat(6) $r}
+                <div class="prod-box">
+                    <ul class="prod-show clearfix">
+                        {pc:content action="lists" catid="$r[catid]" num="3" order="listorder"}
+                        {loop $data $v}
+                        <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/>
+                            <div class="item-desc">
+                                <h3>·{$v[title]}·</h3>
+                            </div>
+                            </a>
+                        </li>
+                        {/loop}
+                        {/pc}
+                    </ul>
+                    <!--
+                    <div class="pagination-style1 tr">
+                        <a class="first-page" href="javascript:;">首页</a>
+                        <span class="current">1</span>
+                        <a href="javascript:;">2</a>
+                        <a href="javascript:;">3</a>
+                        <span class="pagination-style1more">...</span>
+                        <a href="javascript:;">7</a>
+                        <a class="last-page" href="javascript:;">末页</a>
+                    </div>
+                    -->
+                </div>
+                {/loop}
+            </div>
+        </div>
+    </div>
+
+    <div class="typicalcase mt30">
+        <div class="wrapper">
+            <div class="title1 clearfix">
+                <h2 class="l">服务案例</h2>
+                <a class="more-detail r" href="/index.php?m=content&c=index&a=lists&catid=7;">更多案例</a>
+            </div>
+            {php $datanav = array(); $databox = array();}
+            {php $num_all=0;}
+            {php $sql = "SELECT a.`catid`,a.`title`,a.`thumb`,a.`url`,a.`listorder`,b.* from `v9_jj_product` a, `v9_jj_product_data` b where a.`id`=b.`id` ".get_sql_catids($CATEGORYS[7][arrchildid])."  order by a.listorder desc ";}
+
+            {pc:get sql="$sql" num="4" }
+            {loop $data $v}
+                {php $num_all++}
+                {php  array_push($datanav,$v);}
+                {php  array_push($databox,$v);}
+            {/loop}
+                <div id='showcase-item'>
+                    <ul class="showcase-nav clearfix mt20">
+                        {php $num_nav=0}
+                        {loop $datanav $nav}
+                            <li><a href="{$nav[url]}">{$nav[title]}</a></li>
+                        {/loop}
+                    </ul>
+                    <div class="showcase-box">
+                        {loop $databox $box}
+                        <div class="showcase-con">
+                            <ul class="case-show clearfix">
+                                <li class="item"><a href="{$box[url]}">
+                                    <div><img src="{$box[thumb]}" alt="{$box[title]}"/></div>
+                                </a></li>
+                            </ul>
+                        </div>
+                        {/loop}
+                    </div>
+                </div>
+            {/pc}
+
+    </div>
+
+    <div class="us" style="margin-top: 100px;">
+        <div class="wrapper">
+            <div class="title1">
+                <h2>关于我们</h2>
+            </div>
+            <div class="tab" id="js-about">
+                <ul class="clearfix tab-navstyle2">
+                    {pc:content action="lists" catid="9" num="4" order="listorder" }
+                    {loop $data $r}
+                    <?php $num_aboutus++?>
+                    {if $num_aboutus==1}<li class="current pct20">{/if}
+                    {if $num_aboutus!=1}<li class="pct20">{/if}
+                        <a href="{$r[url]}">{$r[title]}</a>
+                    </li>
+                    {/loop}
+                    {/pc}
+                    <li class="pct20">
+                        <a href="/index.php?m=content&c=index&a=lists&catid=29">员工风采</a>
+                    </li>
+                </ul>
+                {pc:content action="lists" catid="9" num="4" order="listorder"}
+                {loop $data $r}
+                <div class="tab-boxstyle2 current">
+                    <div class="comInfo">
+                        <div class="comInfo-desc">
+                            {$r[desc]}
+                            <div style="clear: both"></div>
+                        </div>
+                    </div>
+                </div>
+                {/loop}
+                {/pc}
+                <!-- 员工风采 -->
+                <div class="tab-boxstyle2 mt15">
+                    <div class="timeaxis">
+                        <?php $nextYear = date("Y") + 1; ?>
+                        <div class="timeaxis-box">
+                            {pc:content action="lists" catid="29" num="10" order="actdate DESC"}
+                            {loop $data $r}
+                            {if $nextYear != date('Y',$r[actdate]) }
+                            <?php $nextYear = date('Y',$r[actdate]); ?>
+                            <div class="timeaxis-year">
+                                <div>
+                                    <h3>{date('Y',$r[actdate])}</h3>
+                                    <span></span>
+                                </div>
+                            </div>
+                            {/if}
+                            <div class="timeaxis-item clearfix">
+                                <div class="timeaxis-date">
+                                    <div class="box">
+                                        <p class="date">{date('m.d',$r[actdate])}</p>
+                                        <p class="year">{date('Y',$r[actdate])}</p>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="timeaxis-content clearfix">
+                                    <a href="{$r[url]}">
+                                    <div class="img">
+                                        <img src="{$r[thumb]}" alt="{$r[title]}"/>
+                                    </div>
+                                    <div class="text">
+                                        <h4>{$r[title]}</h4>
+                                        <p>{$r[desc]}</p>
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {/loop}
+                            {/pc}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeaxis-item clearfix">
+                    <div class="timeaxis-date">
+                        <div class="box">
+                            <p class="date"></p>
+                            <p class="year"></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="timeaxis-content clearfix"  style="height:150px; border-bottom:none;">
+                    </div>
+                </div>
+                <div class="timeaxis-item clearfix">
+                    <div class="timeaxis-date">
+                        <div class="box">
+                            <p class="date"></p>
+                            <p class="year"></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="timeaxis-content clearfix"  style="height:150px; border-bottom:none;">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="hotspot mt30 clearfix">
+        <div class="wrapper">
+            <div class="title1 clearfix title1-underline">
+                <h2 style="display: inline-block;">新闻资讯</h2>
+                <a class="more-detail r" href="/index.php?m=content&c=index&a=lists&catid=15;">更多新闻</a>
+            </div>
+            <div class="hotspot-list">
+                {pc:content action="lists" catid="15" num="5" order="inputtime DESC"}
+                <ul>
+                    {loop $data $r}
+                    <li>
+                        <div class="hotspot-item-desc">
+                            <h4><a href="{$r[url]}">{$r[title]}</a></h4>
+                            <p>{str_cut($r[description],200,'...')}</p>
+                        </div>
+                    </li>
+                    {/loop}
+                </ul>
+                {/pc}
+<!--
+                <div class="pagination-style2">
+                    <a class="first-page" href="javascript:;">首页</a>
+                    <span class="current">1</span>
+                    <a href="javascript:;">2</a>
+                    <a href="javascript:;">3</a>
+                    <a href="javascript:;">7</a>
+                    <a class="last-page" href="javascript:;">末页</a>
+                </div>
+-->
+            </div>
+        </div>
+
+    </div>
+    <div class="contact mt30">
+        <div class="wrapper  pt20 clearfix pb50">
+            <div class="title1 clearfix">
+                <h2 style="display: inline-block;">联系我们</h2>
+            </div>
+            <div  id="dituContent"></div>
+            <div class="l contact-info">
+                <p>
+                    {pc:get sql="SELECT * FROM v9_page where catid=19"} {loop $data  $val} {$val[content]} {/loop} {/pc}
+                </p>
+            </div>
+        </div>
+    </div>
+{template "content","footer"}
+
+<script>
+    $(function(){
+        var casedescs = $("#typicalcase .casedesc");
+        var maxHeight = 100;
+        $.each(casedescs, function(i, n){
+            var sHeight = $(n).css("height");
+            if(maxHeight<parseInt(sHeight)) {
+                maxHeight = parseInt(sHeight);
+            }
+        });
+
+        $.each(casedescs, function(i, n){
+            $(n).css("height",maxHeight+"px");
+        });
+
+        //
+            var li_num = 0;
+            $("#ul_product_title li").each(function(){ li_num++; });
+            var width_li = 100/ li_num;
+            $("#ul_product_title li").css("width",width_li+"%");
+/*
+        var li_num = 0;
+        $("#ul_case_title li").each(function(){ li_num++; });
+        var width_li = 100/ li_num;
+        $("#ul_case_title li").css("width",width_li+"%");
+*/
+        var li_num = 0;
+        $("#showcase-item>.showcase-nav li").each(function(){ li_num++; });
+        var width_li = 100/ li_num;
+        $("#showcase-item>.showcase-nav li").css("width",width_li+"%");
+
+
+        $.switchBox('#showcase-item>.showcase-nav>li','#showcase-item .showcase-con'
+                ,{animationType:'slide'}, 'mouseover');
+    });
+</script>
+
+
+

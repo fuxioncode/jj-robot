@@ -1,0 +1,50 @@
+{template "content","header"}
+
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="2" where="`pcatid`=6 OR `pcatid`=7 "  order="listorder ASC"}
+            {loop $data $v}
+            {if $v[pcatid]==$top_parentid}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/if}
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="showcase">
+    <ul class="showcase-nav">
+        {loop subcat($top_parentid) $r}
+        {php $num++}
+        <li {if $num==1} class="current" {/if}><a href="javascript:void(0);">{$r[catname]}</a></li>
+        {/loop}
+    </ul>
+    <div class="wrapper">
+        <div class="showcase-box">
+
+            {loop subcat($top_parentid) $r}
+            <div class="showcase-con">
+                <ul class="item-box1">
+                {pc:content action="lists" catid="$r[catid]" order="listorder"}
+                {loop $data $v}
+                    <li class="">
+                        <a href="{$v[url]}">
+                            <div class="item-img">
+                                <img src="{$v[thumb]}" alt="{$v[title]}"/>
+                                <h3>{$v[title]}</h3>
+                            </div>
+                        </a>
+                        <div class="bk20"></div>
+                    </li>
+                {/loop}
+                {/pc}
+                </ul>
+            </div>
+            {/loop}
+
+        </div>
+    </div>
+</div>
+
+{template "content","footer"}

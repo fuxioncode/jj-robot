@@ -1,0 +1,68 @@
+{template "content","header"}
+
+
+<script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/news-action.js"></script>
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+            {pc:content action="lists" catid="25"  num="1" where="`pcatid`=8"  order="listorder ASC"}
+            {loop $data $v}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="news">
+    <div class="wrapper" id="js-newstype">
+        <ul class="tab-navstyle2 clearfix mt20" id="nav_news">
+            {loop subcat($top_parentid) $r}
+            {php $num++}
+            {if ($top_parentid==$catid && $num==1) || $catid==$r[catid]}<li  class="pct50 current">
+            {else}<li class="pct50">
+            {/if}
+            <a href="javascript:void(0);">{$r[catname]}</a>
+         </li>
+            {/loop}
+        </ul>
+
+
+        {loop subcat($top_parentid) $t}
+        {php $numitem++}
+        <div class="current mt20">
+            {if ($top_parentid==$catid && $numitem==1) || $catid==$r[catid]}
+                {pc:content action="lists" catid="$t[catid]" num="10" order="inputtime DESC" page="$page"}
+            {else}
+                {pc:content action="lists" catid="$t[catid]" num="10" order="inputtime DESC"}
+            {/if}
+            {loop $data $r}
+            <div class="news-box-item">
+                <a href="{$r[url]}"><h2>{$r[title]}</h2></a>
+                <p><span class="news-time">{date('Y-m-d',$r[inputtime])}</span></p>
+                 <a href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}"/></a>
+                 <a href="{$r[url]}"><p class="news-desc">{str_cut($r[description],300,'...')}</p></a>
+                <a class="news-artdetail" href="{$r[url]}">查看全文</a>
+            </div>
+            {/loop}
+            {if ($top_parentid==$catid && $numitem==1) || $catid==$r[catid]}
+                <div id="pages" class="text-c">{$pages}</div>
+            {/if}
+            {/pc}
+        </div>
+        {/loop}
+
+
+    </div>
+</div>
+
+<script>
+    $(function(){
+        var li_num = 0;
+        $("#nav_news li").each(function(){ li_num++; });
+        var width_li = 100/ li_num;
+        $("#nav_news li").css("width",width_li+"%");
+    })();
+
+</script>
+
+{template "content","footer"}

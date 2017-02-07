@@ -1,0 +1,59 @@
+{template "content","header"}
+
+<div class="banner">
+    <div class="banner-box">
+        <ul  >
+            {pc:content action="lists" catid="25"  num="2" where="`pcatid`=6 OR `pcatid`=7 "  order="listorder ASC"}
+            {loop $data $v}
+            {if $v[pcatid]==$top_parentid}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/if}
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="showcase wrapper showproduct-item">
+    <ul class="showcase-nav clearfix mt20" id="nav_product">
+        {loop subcat($top_parentid) $r}
+            <li><a href="javascript:void(0);">{$r[catname]}</a></li>
+        {/loop}
+    </ul>
+
+        <div class="showcase-box">
+            {loop subcat($top_parentid) $r}
+            <div class="showcase-con">
+                <ul class="prod-show clearfix">
+                    {pc:content action="lists" catid="$r[catid]" order="listorder"}
+                    {loop $data $v}
+                    <li class="item"><a href="{$v[url]}">
+                        <div><img src="{$v[thumb]}" alt="{$v[title]}"/></div>
+                        <div class="item-desc">
+                            <h3>·{$v[title]}·</h3>
+                        </div>
+                    </a></li>
+                    {/loop}
+                    {/pc}
+                </ul>
+            </div>
+            {/loop}
+        </div>
+</div>
+
+
+
+<script>
+    $(function(){
+        var li_num = 0;
+        $("#nav_product li").each(function(){ li_num++; });
+        var width_li = 100/ li_num;
+        $("#nav_product li").css("width",width_li+"%");
+
+        $.switchBox('.showproduct-item .showcase-nav>li','.showproduct-item .showcase-con',{
+            animationType:'slide'
+        });
+    });
+
+</script>
+
+{template "content","footer"}

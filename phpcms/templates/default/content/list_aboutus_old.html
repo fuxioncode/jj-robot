@@ -1,0 +1,42 @@
+{template "content","header"}
+
+<div class="banner">
+    <div class="banner-box">
+        <ul>
+        {pc:content action="lists" catid="25"  num="1" where="`pcatid`=9"  order="listorder ASC"}
+        {loop $data $v}
+        <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+        {/loop}
+        {/pc}
+        </ul>
+    </div>
+</div>
+<div class="us mt15">
+    <div class="wrapper">
+        <div class="tab">
+            <ul class="tab-nav">
+                {pc:content action="lists" catid="$catid" num="6" order="listorder" }
+                    {loop $data $r}
+                    <?php $num++?>
+                    <li {if $num==1 }class="current" {/if}><a href="{$r[url]}">{$r[title]}</a></li>
+                    {/loop}
+                {/pc}
+            </ul>
+
+            {pc:content action="lists" catid="$catid" num="6" order="listorder"}
+            {loop $data $r}
+            <?php $num1++?>
+            <div {if $num1==1 } class="tab-box current" {else}class="tab-box" {/if}>
+                <div class="block comInfo clearfix mt20">
+                    <div class="comInfo-desc">
+                        {$r[desc]}
+                    </div>
+                </div>
+            </div>
+            {/loop}
+            {/pc}
+        </div>
+    </div>
+</div>
+
+{template "content","footer"}

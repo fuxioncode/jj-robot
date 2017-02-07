@@ -1,0 +1,42 @@
+{template "content","header"}
+<div class="main">
+
+    <div class="wrapper pt20">
+    <div class="col-auto" style="width: 1100px; margin:0 auto; ">
+        <div class="crumbs"><a href="{siteurl($siteid)}">首页</a><span> &gt; </span>{catpos($catid)} 正文</div>
+
+        <div class="latest">
+            <h4 class="title4">热点新闻</h4>
+            {pc:content action="lists" catid="15" num="10" order="inputtime DESC"}
+            <ul class="list lh24 f14">
+                {loop $data $r}
+                <li>
+                    <div class="news-item-img" style="margin:10px;">
+                        <a href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}"/></a>
+                    </div>
+                </li>
+                {/loop}
+            </ul>
+            {/pc}
+        </div>
+
+        <div id="Article" style="min-height: 400px;">
+            <h1>{$title}<br />
+                <span>{date('Y-m-d',$r[inputtime])}</span>
+            </h1>
+            <!-- {if $description}<div class="summary" >{$description}</div>{/if} -->
+            <div class="content">
+                {$content}
+            </div>
+            <p class="f14" style="margin-top:10px">
+                <strong>上一篇：</strong><a href="{$previous_page[url]}">{$previous_page[title]}</a><br />
+                <strong>下一篇：</strong><a href="{$next_page[url]}">{$next_page[title]}</a>
+            </p>
+        </div>
+
+
+    </div>
+        </div>
+</div>
+<script src="{PLUGIN_STATICS_PATH}taikan/js/fixed-footer.js"></script>
+{template "content","footer"}

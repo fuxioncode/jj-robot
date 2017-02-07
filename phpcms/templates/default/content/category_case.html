@@ -1,0 +1,118 @@
+{template "content","header"}
+
+
+<div class="banner">
+    <div class="banner-box">
+        <ul  >
+            {pc:content action="lists" catid="25"  num="2" where="`pcatid`=6 OR `pcatid`=7 "  order="listorder ASC"}
+            {loop $data $v}
+            {if $v[pcatid]==$top_parentid}
+            <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+            {/if}
+            {/loop}
+            {/pc}
+        </ul>
+    </div>
+</div>
+<div class="showcase wrapper">
+    {php $datanav = array(); $databox = array();}
+    {php $num_all=0;}
+    {php $page=1}
+    {php $sql = "SELECT a.`catid`,a.`title`,a.`thumb`,a.`url`,a.`listorder`,b.* from `v9_jj_product` a, `v9_jj_product_data` b where a.`id`=b.`id` ".get_sql_catids($CATEGORYS[$catid][arrchildid])."  order by a.listorder desc ";}
+
+    {pc:get sql="$sql" num="16" page="$_GET[page]"}
+    {loop $data $v}
+        {php $num_all++}
+        {php  array_push($datanav,$v);}
+        {php  array_push($databox,$v);}
+        {if $num_all%4==0}
+            {if $num_all/4==1} <div id='showcase-item1'>
+            {elseif  $num_all/4==2} <div id='showcase-item2'>
+            {elseif  $num_all/4==3} <div id='showcase-item3'>
+            {elseif  $num_all/4==4} <div id='showcase-item4'>
+            {else} <div >
+            {/if}
+                <ul class="showcase-nav clearfix mt45">
+                    {php $num_nav=0}
+                    {loop $datanav $nav}
+                        <li><a href="javascript:void(0);">{$nav[title]}</a></li>
+                    {/loop}
+                </ul>
+                <div class="showcase-box">
+                    {loop $databox $box}
+                    <div class="showcase-con">
+                        <ul class="case-show clearfix">
+                            <li class="item"><a href="{$box[url]}">
+                                <div><img src="{$box[thumb]}" alt="{$box[title]}"/></div>
+                            </a></li>
+                        </ul>
+                    </div>
+                    {/loop}
+                </div>
+            </div>
+
+            {php $datanav = array(); $databox = array();}
+        {/if}
+    {/loop}
+    <!--  最后一行 -->
+    {if $num_all%4 != 0}
+    <div id='showcase-item'>
+        <ul class="showcase-nav clearfix mt45">
+            {php $num_nav=0}
+            {loop $datanav $nav}
+                <li><a href="javascript:void(0);">{$nav[title]}</a></li>
+            {/loop}
+        </ul>
+        <div class="showcase-box">
+            {loop $databox $box}
+            <div class="showcase-con">
+                <ul class="case-show clearfix">
+                    <li class="item"><a href="{$box[url]}">
+                        <div><img src="{$box[thumb]}" alt="{$box[title]}"/></div>
+                    </a></li>
+                </ul>
+            </div>
+            {/loop}
+        </div>
+    </div>
+    {/if}
+
+  <div id="pages" class="text-c">{$pages}</div>
+    {/pc}
+
+
+
+
+</div>
+
+
+
+<script>
+    $(function(){
+
+        var li_num = 0;
+        $("#showcase-item>.showcase-nav li").each(function(){ li_num++; });
+        var width_li = 100/ li_num;
+        $("#showcase-item>.showcase-nav li").css("width",width_li+"%");
+
+        //
+        $.switchBox('#showcase-item1>.showcase-nav>li','#showcase-item1 .showcase-con',{
+            animationType:'slide'
+        });
+        $.switchBox('#showcase-item2>.showcase-nav>li','#showcase-item2 .showcase-con',{
+            animationType:'slide'
+        });
+        $.switchBox('#showcase-item3>.showcase-nav>li','#showcase-item3 .showcase-con',{
+            animationType:'slide'
+        });
+        $.switchBox('#showcase-item4>.showcase-nav>li','#showcase-item4 .showcase-con',{
+            animationType:'slide'
+        });
+        $.switchBox('#showcase-item>.showcase-nav>li','#showcase-item .showcase-con',{
+            animationType:'slide'
+        });
+    });
+
+</script>
+
+{template "content","footer"}

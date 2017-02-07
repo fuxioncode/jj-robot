@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>今甲官网</title>
+    <link rel="stylesheet" type="text/css" href="{PLUGIN_STATICS_PATH}taikan/css/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="{PLUGIN_STATICS_PATH}taikan/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="{PLUGIN_STATICS_PATH}taikan/css/imageflow.css"/>
+    <link rel="stylesheet" type="text/css" href="{PLUGIN_STATICS_PATH}taikan/css/zzsc.css"/>
+    <script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{JS_PATH}jquery.sgallery.js"></script>
+    <script type="text/javascript" src="{JS_PATH}search_common.js"></script>
+    <script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/playround.js"></script>
+    <script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/tool.js"></script>
+    <script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/showcase.js"></script>
+    <script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/about-action.js"></script>
+
+    <!-- 百度统计代码 start -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?76fd46d81e3217425fd0e7f8a76aa90b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!-- 百度统计代码 end -->
+
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <div class="logo l">
+                <img class="l" src="{PLUGIN_STATICS_PATH}taikan/images/logo.png" alt="今甲官网"/>
+            </div>
+            <ul class="nav r">
+                {if $catid=="" }<li class="current">{else}<li>{/if}<a href="{siteurl($siteid)}">首页</a></li>
+
+                {pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+                    {loop $data $r}
+                        {php $num_sub = 0 }
+                        {loop subcat($r[catid]) $subr}
+                            {php $num_sub++ }
+                        {/loop}
+
+                        {if ($r[catid]==$top_parentid || $r[catid]==$catid) && $num_sub>0}<li class="current nav-hassub">{/if}
+                        {if ($r[catid]==$top_parentid || $r[catid]==$catid) && $num_sub==0}<li class="current">{/if}
+                        {if $r[catid]!=$top_parentid && $r[catid]!=$catid && $num_sub>0}<li class="nav-hassub">{/if}
+                        {if $r[catid]!=$top_parentid && $r[catid]!=$catid && $num_sub==0}<li class="">{/if}
+                            <a href="{$r[url]}">{$r[catname]}</a>
+                            {if $num_sub>0}
+                            <ul class="sub-nav">
+                                {loop subcat($r[catid]) $subr}
+                                <li><a href="{$subr[url]}">{$subr[catname]}</a></li>
+                                {/loop}
+                            </ul>
+                            {/if}
+                        </li>
+                    {/loop}
+                {/pc}
+                </ul>
+        </div>
+    </div>

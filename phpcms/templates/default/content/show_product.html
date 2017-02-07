@@ -1,0 +1,57 @@
+{template "content","header"}
+
+<script type="text/javascript" src="{PLUGIN_STATICS_PATH}taikan/js/imageflow.js"></script>
+
+<div class="content fix_content" style="margin:0px auto;">
+    <div class="wrapper">
+        {if !empty($thumb_banner)}
+        <div id="LoopDiv">
+            <input id="S_Num" type="hidden" value="2" />
+            <div id="starsIF" class="imageflow">
+
+                {loop $thumb_banner $pic_k $r}
+                <img src="{$r[url]}" longdesc="javascript:void(0);" width="240" height="200" alt="{$r[title]}" />
+                {/loop}
+                <!--
+                {pc:content action="lists" catid="$CATEGORYS[$catid]['parentid']" num="20" order="listorder"}
+                {loop $data $v}
+                <img src="{$v[thumb]}" longdesc="{$v[url]}" width="240" height="200" alt="{$v[title]}" />
+                {/loop}
+                {/pc}
+                -->
+            </div>
+        </div>
+        {/if}
+        <div >
+            <div class="l nav_second"  style="margin-top: 20px">
+                <a href="{siteurl($siteid)}">首页/</a>
+                {catpos($catid,'/')}
+
+                {pc:content action="lists" catid="$catid" num="6" order="listorder"}
+                {loop $data $v}
+                {if $v[id]==$id }{$v[title]}{/if}
+                {/loop}
+                {/pc}
+            </div>
+        </div>
+
+
+        <div style="border-bottom:1px solid #d7d7d5;clear:both;"></div>
+
+        <div class="product-content"  style="margin-top: 15px; ">
+            {if $taobaolink!=""}
+            <div>
+                <a class="taobaolink" href="{$taobaolink}" target="_blank">淘宝链接</a>
+            </div>
+            {/if}
+
+            {if $videosrc!=""} <p style="text-align: center">{$videosrc}</p>
+            {/if}
+
+            <div class="comInfo" style="text-align: center">
+                {$introductions}
+            </div>
+        </div>
+    </div>
+</div>
+{template "content","footer"}

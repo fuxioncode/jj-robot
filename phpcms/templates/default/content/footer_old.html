@@ -1,0 +1,126 @@
+<div class="bk"></div>
+
+<div class="footer">
+    <div class="wrapper">
+        <div class="qrcode">
+            <img src=”{PLUGIN_STATICS_PATH}taikan/images/qrcode.jpg" alt="今甲官网"/>
+        </div>
+        <div class="footer-box clearfix">
+            <ul class="clearfix">
+                <li>
+                    <h4><a href="javascript:void(0);">产品中心</a></h4>
+                    <ul class="footer-itemcon">
+                        <li><a href="javascript:void(0);">商业机器人</a></li>
+                        <li><a href="javascript:void(0);">家用机器人</a></li>
+                        <li><a href="javascript:void(0);">教育机器人</a></li>
+                        <li><a href="javascript:void(0);">特种机器人</a></li>
+                        <li><a href="javascript:void(0);">创意机器人</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="javascript:void(0);">案例展示</a></h4>
+                    <ul class="footer-itemcon">
+                        <li><a href="javascript:void(0);">市场迎宾</a></li>
+                        <li><a href="javascript:void(0);">家庭陪伴</a></li>
+                        <li><a href="javascript:void(0);">餐厅服务</a></li>
+                        <li><a href="javascript:void(0);">现场表演</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="javascript:void(0);">新闻资讯</a></h4>
+                    <ul class="footer-itemcon">
+                        <li><a href="javascript:void(0);">热点新闻</a></li>
+                        <li><a href="javascript:void(0);">行业动态</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="javascript:void(0);">关于我们</a></h4>
+                    <ul class="footer-itemcon">
+                        <li><a href="javascript:void(0);">企业简介</a></li>
+                        <li><a href="javascript:void(0);">核心价值</a></li>
+                        <li><a href="javascript:void(0);">团队核心</a></li>
+                        <li><a href="javascript:void(0);">员工风采</a></li>
+                        <li><a href="javascript:void(0);">公司环境</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="javascript:void(0);">人才招聘</a></h4>
+                </li>
+                <li>
+                    <h4><a href="javascript:void(0);">联系我们</a></h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cpr cb">
+        <div class="wrapper">
+            <p>© 2015 广州今甲智能科技有限公司. All Right Reserved. 粤ICP备13075618号-1</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/index-action.js"></script>
+
+
+
+
+<div class="footer mt20">
+    <div class="wrapper">
+        <div class="qrcode">
+            <img src="{PLUGIN_STATICS_PATH}taikan/images/qrcode.jpg" alt="今甲官网"/>
+        </div>
+        <div class="footer-box clearfix">
+            <ul class="clearfix">
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=6">产品中心</a></h4>
+                    <ul class="footer-itemcon">
+                        {loop subcat(6) $r}
+                        <li><a href="/index.php?m=content&c=index&a=lists&catid=6">{$r[catname]}</a></li>
+                        {/loop}
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=7">案例展示</a></h4>
+                    <ul class="footer-itemcon">
+                        {loop subcat(7) $r}
+                        <li><a href="/index.php?m=content&c=index&a=lists&catid=7">{$r[catname]}</a></li>
+                        {/loop}
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=8">新闻资讯</a></h4>
+                    <ul class="footer-itemcon">
+                        {loop subcat(8) $r}
+                        <li><a href="/index.php?m=content&c=index&a=lists&catid=8">{$r[catname]}</a></li>
+                        {/loop}
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=9">关于我们</a></h4>
+                    <ul class="footer-itemcon">
+
+                        {pc:content action="lists" catid="9" num="3" order="listorder"}
+                        {loop $data $v}
+                        <li><a href="{$v[url]}">{$v[title]}</a></li>
+                        {/loop}
+                        {/pc}
+                    </ul>
+                </li>
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=20">人才招聘</a></h4>
+                </li>
+                <li>
+                    <h4><a href="/index.php?m=content&c=index&a=lists&catid=19">联系我们</a></h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cpr cb">
+        <div class="wrapper">
+            <p>© 2015 广州今甲智能科技有限公司. All Right Reserved. 粤ICP备13075618号-1</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

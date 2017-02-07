@@ -1,0 +1,26 @@
+{template "content","header"}
+<div class="fix_content">
+    <div class="banner">
+        <div class="banner-box">
+            <ul>
+                {pc:content action="lists" catid="25"  num="1" where="`pcatid`=21"  order="listorder ASC"}
+                {loop $data $v}
+                <li><a href="{$v[url]}"><img src="{$v[thumb]}" alt="{$v[title]}"/></a></li>
+                {/loop}
+                {/pc}
+            </ul>
+        </div>
+    </div>
+    <div class="wrapper  pt50 clearfix pb50">
+        <div id="dituContent"></div>
+        <div class="l contact-info">
+            <p>
+                {$content}
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{template "content","footer"}
+<script src="{PLUGIN_STATICS_PATH}taikan/js/contact-action.js"></script>
