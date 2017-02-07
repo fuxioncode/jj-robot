@@ -1,0 +1,10 @@
+
+.qqserver_div{z-index: 1000; position:fixed; top:100px; right:0;}
+.qqserver_item{ height: 40px;}
+.qqserver_item .qqserver_fold {position:absolute;right:0;}
+.qqserver_item .qqserver_body {position:absolute;right:-120px;
+    -webkit-transition:.5s cubic-bezier(.19,1,.22,1);-o-transition:.5s cubic-bezier(.19,1,.22,1);transition:.5s cubic-bezier(.19,1,.22,1);}
+.qqserver_item:hover .qqserver_body {right: 0; }
+
+#cooperation_div {z-index:999; position:fixed; left: 0; top: 0; width: 100%; height: 100%; display:none; }
+#cooperation_div #cooperation {z-index:1000; position:fixed; left: 35%; top: 25%; width:30%; padding:20px; background-color: #ffffff; border: 1px solid #d0d0d0; }
