@@ -15,8 +15,7 @@
 .hotspot,
 .news{}
 
-.wrapper{max-width: 1200px;margin-left: auto;margin-right: auto;height: 100%; width: 100%;}
-.wrapper_content{max-width: 63.3%;margin-left: auto;margin-right: auto;height: 100%;}
+.wrapper_content, .wrapper{max-width: 1200px;margin-left: auto;margin-right: auto;height: 100%; width: 100%;}
 
 @font-face {
     font-family:  "Microsoft YaHei" ! important;
@@ -163,6 +162,7 @@ border-style:solid;height:39px;background-color:#6c6c6c;}
 
 /* complany infomation ::comInfo; */
 .comInfo{}
+img{max-width: 100%;}
 
 /*.comInfo-logo{width:170px;float:left;}
 .comInfo-logo img{display:block;width:100px;height:100px;margin:25px auto 0; }
@@ -232,7 +232,7 @@ border-style:solid;height:39px;background-color:#6c6c6c;}
 .cpr p{color:#f4f4f4;font-size:12px;line-height:20px;text-align:center;}
 
 /********** produce case page **********/
-.banner{background-color:#ccc;min-width:1200px;margin-left:auto;margin-right:auto;}
+.banner{background-color:#ccc;margin-left:auto;margin-right:auto;}
 .banner-box{width:100%;height:auto;}
 .banner-box ul{width:100%;height:auto;}
 .banner-box li{width:100%;height:auto;}
@@ -475,7 +475,7 @@ textarea{text-indent: 1em;}
 
 /* timeaxis */
 .timeaxis{padding:30px;}
-.timeaxis-box{width:1000px;margin-left:auto;margin-right:auto;position:relative;}
+.timeaxis-box{margin-left:auto;margin-right:auto;position:relative;}
 
 .timeaxis-year{margin-left:180px;position:relative;font:bold 30px/36px 'WEB-LiHei','Microsoft Yahei';
     color:#5a5657;height:36px;border-left:2px solid #5a5657;}

@@ -5,27 +5,32 @@
 $(function(){
     $.AcrossSwitch(".looppic-show",".looppic-left",".looppic-right",1,true,null,'.looppic-nav');
 
-    (function(){
-        var yScroll;
-        yScroll = window.innerHeight - 80;
-        $(".looppic").css("height",yScroll+"px");
+    window.onload = function(){
 
-        var yScroll_content;
-        yScroll_content = window.innerHeight - 320;
+        var u = navigator.userAgent;
+        var browser = {
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                    iPhone: u.indexOf('iPhone') > -1,
+                    iPad: u.indexOf('iPad') > -1,
+                    iPod: u.indexOf('iPod') > -1,
+                    iOS: u.indexOf('iOS') > -1
+            };
+        if(browser.android
+            || browser.iPhone
+            || browser.iPad) {
+            //$("#head-logo").hide();
+        } else if($(".looppic")!= undefined){
+           var yScroll = window.innerHeight - 80;
+            $(".looppic").css("height",yScroll+"px");
+        }
+
+        //var footer_height = document.getElementById("footer").style.height;
+        var yScroll_content = window.innerHeight - 320;
+        // alert(window.innerHeight + " | " + footer_height);
+
         $(".fix_content").css("min-height",yScroll_content+"px");
-    })();
+    };
 
-    /*(function($){
-        var lis = $('.prod').find('li');
-        var idx = 0;
-        setInterval(function(){
-            lis.removeClass('current').eq(idx).addClass('current');
-            idx++;
-            if(idx >= lis.length){
-                idx = 0;
-            }
-        },3000);
-    })($);*/
     $.makeTab('#js-prod');
     $.makeTab('#js-about');
     $.makeTab('#js-case');
